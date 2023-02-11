@@ -37,7 +37,7 @@ export default {
   methods: {
     async getPokemon() {
       const pokemon = usePokemon()
-      await pokemon.getPokemonData("pikachu")
+      await pokemon.getPokemonData(this.pokemon.name)
       const pokemonData = pokemon.pokemons.filter(
         (p) => p.name === this.pokemon.name
       )[0]
