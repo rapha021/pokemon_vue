@@ -37,16 +37,21 @@ export default {
   },
   methods: {
     async getPokemon() {
-      const pokemon = usePokemon()
-      await pokemon.getPokemonData(this.pokemon.name)
-      const pokemonData = pokemon.pokemons.filter(
+      await this.pokemon.getPokemonData(this.pokemon.name)
+      const pokemonData = this.pokemon.pokemons.filter(
         (p) => p.name === this.pokemon.name
       )[0]
+
       this.pokemon = {
-        ...pokemon,
+        ...this.pokemon,
         ...pokemonData,
       }
     },
+  },
+  setup() {
+    const pokemon = usePokemon()
+
+    return { pokemon }
   },
 }
 </script>

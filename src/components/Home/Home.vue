@@ -9,6 +9,11 @@ export default {
     Card,
     RouterLink,
   },
+  setup() {
+    const pokemonState = usePokemon()
+
+    return { pokemonState }
+  },
   data() {
     const pokemonState = usePokemon()
     return {
@@ -18,8 +23,7 @@ export default {
   },
   methods: {
     async handleSubmit(e: Event) {
-      const pokemonState = usePokemon()
-      await pokemonState.getPokemonData(this.pokemonName.toLowerCase())
+      await this.pokemonState.getPokemonData(this.pokemonName.toLowerCase())
       this.pokemonName = ""
     },
   },
