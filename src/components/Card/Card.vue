@@ -22,7 +22,6 @@ export default {
       pokemon: {
         name: pokemonName,
       } as IPokemon,
-      url: this.$route.params.id,
     }
   },
   async mounted() {
@@ -37,8 +36,9 @@ export default {
   },
   methods: {
     async getPokemon() {
-      await this.pokemon.getPokemonData(this.pokemon.name)
-      const pokemonData = this.pokemon.pokemons.filter(
+      const pokemon = usePokemon()
+      await pokemon.getPokemonData("pikachu")
+      const pokemonData = pokemon.pokemons.filter(
         (p) => p.name === this.pokemon.name
       )[0]
 
@@ -47,11 +47,6 @@ export default {
         ...pokemonData,
       }
     },
-  },
-  setup() {
-    const pokemon = usePokemon()
-
-    return { pokemon }
   },
 }
 </script>

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { defineStore } from "pinia"
+import { useToast } from "vue-toastification"
 
 interface IPokemonResponse {
   name: string
@@ -45,6 +46,7 @@ export const usePokemon = defineStore("pokemonData", {
       pokemons: [] as IPokemon[],
     }
   },
+
   actions: {
     async getPokemonDataEvolution(url: string, name: string) {
       return await axios.get(url).then(async (res) => {
@@ -89,6 +91,7 @@ export const usePokemon = defineStore("pokemonData", {
     },
 
     async getPokemonData(name: string) {
+      const toast = useToast()
       const pokemon = await axios
         .get<IPokemonResponse>(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then(async (res) => {
@@ -111,7 +114,9 @@ export const usePokemon = defineStore("pokemonData", {
       )
 
       if (!pokemonAlreadyExists) {
-        this.pokemons.push(pokemon)
+        return this.pokemons.push(pokemon)
+      } else {
+        toast.warning("Poké já está na lista")
       }
     },
   },
