@@ -1,7 +1,7 @@
 <script lang="ts">
 import "./style.sass"
 import { usePokemon } from "@/stores/pokemon_data"
-import PokemonListVue from "../PokemonList/PokemonList.vue"
+import PokemonAttr from "../PokemonAttr/PokemonAttr.vue"
 
 interface IPokemon {
   name: string
@@ -22,28 +22,45 @@ export default {
       pokemon: {
         name: pokemonName,
       } as IPokemon,
+      url: this.$route.params.id,
     }
   },
   async mounted() {
-    const pokemon = usePokemon()
-    await pokemon.getPokemonData(this.pokemon.name)
-    const pokemonData = pokemon.pokemons.filter(
-      (p) => p.name === this.pokemon.name
-    )[0]
-    this.pokemon = {
-      ...pokemon,
-      ...pokemonData,
-    }
+    await this.getPokemon()
   },
-  components: { PokemonListVue },
+  components: { PokemonAttr },
+  watch: {
+    async "$route.params"(to, from) {
+      this.pokemon.name = this.$route.params.name as string
+      await this.getPokemon()
+    },
+  },
+  methods: {
+    async getPokemon() {
+      const pokemon = usePokemon()
+      await pokemon.getPokemonData(this.pokemon.name)
+      const pokemonData = pokemon.pokemons.filter(
+        (p) => p.name === this.pokemon.name
+      )[0]
+      this.pokemon = {
+        ...pokemon,
+        ...pokemonData,
+      }
+    },
+  },
 }
 </script>
 
 <template>
   <div class="container">
     <section class="pokemon-wrap">
-      <PokemonListVue :pokemon="pokemon" />
-      <PokemonListVue v-if="pokemon.evolution" :pokemon="pokemon.evolution" />
+      <RouterLink to="/">
+        <button>Voltar para Home</button>
+      </RouterLink>
+      <div class="wrapper">
+        <PokemonAttr :pokemon="pokemon" />
+        <PokemonAttr v-if="pokemon.evolution" :pokemon="pokemon.evolution" />
+      </div>
     </section>
   </div>
 </template>

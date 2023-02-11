@@ -7,14 +7,33 @@
     width: 100vw
     height: 100vh
 
-    .pokemon-wrap
-        display: flex
+    .pokemon-wrap 
+        padding: 20px 
+        height: 415px
+        background-color: #913175
 
-        width: 80%
-        height: 400px
-        background-color: variables.$mid-dark-purple
+        border-radius: 8px
 
-        border-radius: 3px
+        box-shadow: 0px 0 30px rgb(0, 0, 0, 0.3)
+        
 
-
+        button
+            height: 30px
             
+            background-color: #20262E
+            border: none
+            border-radius: 3px
+
+            cursor: pointer
+            color: #fff
+
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
+            
+            transition: 200ms all
+
+            &:hover
+                background-color: #E9E8E8
+                color: #000
+
+    .wrapper
+        display: flex

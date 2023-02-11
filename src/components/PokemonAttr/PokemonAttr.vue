@@ -1,15 +1,19 @@
 <script lang="ts">
+import { RouterLink } from "vue-router"
 import "./style.sass"
 
 export default {
   props: ["pokemon"],
+  components: { RouterLink },
 }
 </script>
 
 <template>
   <div class="img">
     <img :src="pokemon.imgUrl" />
-    <h1>{{ pokemon.name }}</h1>
+    <RouterLink :to="'/pokemon/' + pokemon.name">
+      <h1>{{ pokemon.name }}</h1>
+    </RouterLink>
   </div>
 
   <ul class="data">

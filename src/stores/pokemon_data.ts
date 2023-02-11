@@ -46,12 +46,20 @@ export const usePokemon = defineStore("pokemonData", {
     }
   },
   actions: {
-    async getPokemonDataEvolution(url: string) {
+    async getPokemonDataEvolution(url: string, name: string) {
       return await axios.get(url).then(async (res) => {
         if (res.data.chain.evolves_to.length < 1) {
           return null
         }
-        const pokemonName = res.data.chain.evolves_to[0].species.name
+
+        let pokemonName = res.data.chain.evolves_to[0].species.name
+
+        if (res.data.chain.evolves_to[0].evolves_to[0].species.name === name) {
+          return null
+        }
+        if (res.data.chain.evolves_to[0].species.name === name) {
+          pokemonName = res.data.chain.evolves_to[0].evolves_to[0].species.name
+        }
         return await axios
           .get<IPokemonResponse>(
             `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
@@ -76,7 +84,7 @@ export const usePokemon = defineStore("pokemonData", {
       return await axios
         .get(`https://pokeapi.co/api/v2/pokemon-species/${name}/`)
         .then(async (res) =>
-          this.getPokemonDataEvolution(res.data.evolution_chain.url)
+          this.getPokemonDataEvolution(res.data.evolution_chain.url, name)
         )
     },
 

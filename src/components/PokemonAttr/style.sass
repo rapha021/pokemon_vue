@@ -1,17 +1,16 @@
+@use "../../assets/variables"
+        
+
 .data
         display: flex
         flex-direction: column
         justify-content: space-evenly
         
-        width: 30%
-
         li
             color: #fff
             font-size: 20px
 
 .img
-        width: 30%
-
         img
             width: 300px
 
@@ -20,3 +19,11 @@
             text-align: center
             color: #fff
             text-transform: capitalize
+
+        a
+            text-decoration: none
+            text-shadow: -1px 0 10px #000
+            transition: 300ms all
+
+            &:hover
+                text-shadow: none
