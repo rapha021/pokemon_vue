@@ -1,0 +1,74 @@
+@use "../../assets/variables"
+
+.pokemon-search
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    color: #fff
+
+    font-size: 25px
+    font-weight: bold
+    font-style: italic
+    letter-spacing: 2px
+
+.pokemon-form
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    gap: 20px
+
+    input
+        width: 260px
+        height: 35px
+
+        padding: 5px 10px
+
+        border: none
+        border-radius: 3px
+
+        outline: none
+
+    button
+        width: 130px
+        height: 35px
+
+        border: none
+        border-radius: 3px
+
+        background-color: variables.$purple
+        color: #fafafa
+        text-shadow: -1px 0 5px #000
+        cursor: pointer
+
+        transition: 300ms all
+
+    button:hover
+        background-color: variables.$mid-dark-purple
+
+        box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.3)
+
+.pokemon-history
+    display: flex
+
+    .pokemon-list
+        display: flex
+        
+        li
+            display: flex
+            flex-direction: column
+            align-items: center
+
+            color: #fff
+            font-size: 20px
+
+            text-transform: capitalize
+
+            img
+                width: 150px
+            
+            a
+                text-decoration: none
+                color: #fff
+            a:hover
+                text-decoration: underline
