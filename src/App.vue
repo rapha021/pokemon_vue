@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router"
+import { RouterView } from "vue-router"
 </script>
 
 <template>
@@ -14,7 +14,11 @@ main {
   justify-content: center;
   gap: 30px;
 
-  width: 100vw;
-  height: 100vh;
+  margin: 0 auto;
+
+  width: 80%;
+  height: 100%;
+
+  margin-top: 90px;
 }
 </style>

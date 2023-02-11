@@ -5,12 +5,25 @@
     flex-direction: column
     gap: 20px
 
-    color: #fff
+    
 
-    font-size: 25px
-    font-weight: bold
-    font-style: italic
-    letter-spacing: 2px
+    h1
+        color: #F56EB3
+
+        font-size: 30px
+        font-weight: bold
+        letter-spacing: 2px
+
+        
+        animation: blinking 1s infinite
+
+    @keyframes blinking
+        0%
+            box-shadow: 5px 0 0 #F56EB3
+            
+        40%
+            box-shadow: 5px 0 0 #F56EB3
+            
 
 .pokemon-form
     display: flex
@@ -36,7 +49,7 @@
         border: none
         border-radius: 3px
 
-        background-color: variables.$purple
+        background-color: #F56EB3
         color: #fafafa
         text-shadow: -1px 0 5px #000
         cursor: pointer
@@ -51,9 +64,15 @@
 .pokemon-history
     display: flex
 
+    width: 90%
+    height: 200px
+    overflow-x: auto 
+
     .pokemon-list
         display: flex
-        
+        gap: 30px
+
+
         li
             display: flex
             flex-direction: column

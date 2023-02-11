@@ -3,11 +3,17 @@ import { usePokemon } from "../../stores/pokemon_data"
 import "./style.sass"
 import Card from "../Card/Card.vue"
 import { RouterLink } from "vue-router"
+import { useToast } from "vue-toastification"
 
 export default {
   components: {
     Card,
     RouterLink,
+  },
+  setup() {
+    const toast = useToast()
+
+    return { toast }
   },
   data() {
     const pokemonState = usePokemon()
@@ -19,7 +25,11 @@ export default {
   methods: {
     async handleSubmit(e: Event) {
       const pokemonState = usePokemon()
-      await pokemonState.getPokemonData(this.pokemonName)
+      await pokemonState
+        .getPokemonData(this.pokemonName.toLowerCase())
+        .catch((err) => {
+          this.toast.error(err.response.data)
+        })
       this.pokemonName = ""
     },
   },
@@ -28,9 +38,14 @@ export default {
 
 <template>
   <section class="pokemon-search">
-    <h1>Insira o nome do pokemon</h1>
+    <h1>Insira o nome do Poké</h1>
     <form class="pokemon-form" @submit.prevent="handleSubmit">
-      <input type="text" v-model="pokemonName" placeholder="Ex:. Ditto" />
+      <input
+        type="text"
+        v-model="pokemonName"
+        placeholder="Ex:. Ditto"
+        required
+      />
       <button type="submit">Pesquisar</button>
     </form>
   </section>
