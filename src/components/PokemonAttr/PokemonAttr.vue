@@ -11,8 +11,8 @@ export default {
 <template>
   <div class="wrapper">
     <div class="img">
-      <img :src="pokemon.imgUrl" />
       <RouterLink :to="'/pokemon/' + pokemon.name">
+        <img :src="pokemon.imgUrl" />
         <h1>{{ pokemon.name }}</h1>
       </RouterLink>
     </div>

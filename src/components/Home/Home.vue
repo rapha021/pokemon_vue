@@ -53,9 +53,9 @@ export default {
   <section class="pokemon-history">
     <ul class="pokemon-list">
       <li v-for="pokemon in pokemons">
-        <img :src="pokemon.imgUrl" :alt="pokemon.name + 'img'" />
-
         <RouterLink :to="'/pokemon/' + pokemon.name">
+          <img :src="pokemon.imgUrl" :alt="pokemon.name + 'img'" />
+
           {{ pokemon.name }}
         </RouterLink>
       </li>

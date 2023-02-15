@@ -59,6 +59,7 @@ export const usePokemon = defineStore("pokemonData", {
         if (res.data.chain.evolves_to[0].evolves_to[0].species.name === name) {
           return null
         }
+
         if (res.data.chain.evolves_to[0].species.name === name) {
           pokemonName = res.data.chain.evolves_to[0].evolves_to[0].species.name
         }
